@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrôle de Lumière</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Contrôle de Lumière</h1>
+        <div id="light-status">Lumière éteinte</div>
+        <div class="light-bulb" id="light-bulb">💡</div>
+        <button class="button on-btn" onclick="turnOn()">Allumer</button>
+        <button class="button off-btn" onclick="turnOff()">Éteindre</button>
+    </div>
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+    }
+    
+    .container {
+        text-align: center;
+    }
+    
+    h1 {
+        color: #333;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+    }
+    
+    #light-status {
+        font-size: 1.5em;
+        margin-bottom: 30px;
+        color: #666;
+    }
+    
+    .button {
+        padding: 15px 30px;
+        font-size: 1.2em;
+        border: none;
+        border-radius: 10px;
+        margin: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    .on-btn {
+        background-color: #28a745;
+        color: white;
+    }
+    
+    .on-btn:hover {
+        background-color: #218838;
+    }
+    
+    .off-btn {
+        background-color: #dc3545;
+        color: white;
+    }
+    
+    .off-btn:hover {
+        background-color: #c82333;
+    }
+    
+    .light-bulb {
+        font-size: 100px;
+        color: #ccc;
+        transition: color 0.3s;
+    }
+    
+    .light-on {
+        color: #ffeb3b;
+    }
+</style>
+
+</body>
+</html>
