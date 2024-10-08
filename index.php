@@ -8,45 +8,39 @@
     <link rel="stylesheet" href="style.css">
     <script>
         let responses = [];
-        function json(i) {
-            fetch('boutton.json')
-                .then(response => response.json())
-                .then(data => {
-                    responses = data; // Stocker les données JSON dans la variable
-                    document.getElementById('light-status').innerText = data[i].message;
-                    console.log('Données JSON chargées:', responses);
 
-                })}
-         fetch('boutton.json')
-                        .then(response => response)
-                        .then(data => {
-                            responses = data; // Stocker les données JSON dans la variable
-                            console.log('Données JSON chargées:', responses);
-                        })
+        // Charger le fichier JSON une seule fois
+        fetch("boutton.json")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erreur réseau lors du chargement du fichier JSON');
+                }
+                return response.json();
+            })
+            .then(data => {
+                responses = data;
+                console.log('Données JSON chargées:', responses);
+            })
+            .catch(error => console.error('Erreur lors du chargement du JSON:', error));
+
         // Fonction pour allumer la lumière
         function turnOn() {
-                        fetch('index.php?action=on')
-                            .then(response => response)
-                            .then(data => {
-                                if (data.status == "allumé") {
-                                    json(0);
-                                    
-                                    console.log(data);
-                                }
-                            });
+                        console.log("Lumière allumée");
+                        document.getElementById("light-status").innerText = responses[0].message;
+                        document.getElementById("light-image").innerHTML = responses[0].image; // Changez la source de l'image
                     }
+                
+            
+        
 
         // Fonction pour éteindre la lumière
         function turnOff() {
-                        fetch('index.php?action=off')
-                            .then(response => response)
-                            .then(data => {
-                                if (data.status == "éteint") {
-                                    json(1);
-                                    console.log(data);
-                                }
-                            });
+                        console.log("Lumière éteinte");
+                        document.getElementById("light-status").innerText = responses[1].message;
+                        document.getElementById("light-image").innerHTML = responses[1].image; // Changez la source de l'image
                     }
+              
+            
     </script>
 </head>
 
@@ -54,8 +48,8 @@
 
     <div class="container">
         <h1>Contrôle de Lumière</h1>
-        <div id="light-status">Lumière éteinte</div>
-        <div class="light-bulb" id="light-bulb">💡</div>
+        <div id="light-status">Lumière</div>
+        <div id="light-image" style="font-size: 48px;">&#x1F50C</div>
         <button class="button on-btn" onclick="turnOn()">Allumer</button>
         <button class="button off-btn" onclick="turnOff()">Éteindre</button>
     </div>
@@ -78,8 +72,8 @@
         }
     }
     ?>
+    
 
 
 </body>
-
 </html>
